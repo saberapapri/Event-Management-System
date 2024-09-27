@@ -1,0 +1,32 @@
+{% extends 'events/base.html' %}
+
+{% block title %}Event List{% endblock %}
+
+{% block content %}
+<h2>Event List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.name }}</td>
+            <td>{{ event.date }}</td>
+            <td>{{ event.description }}</td>
+            <td>{{ event.location }}</td>
+            <td>
+                <a href="{% url 'event_edit' event.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'event_delete' event.pk %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'event_create' %}" class="btn btn-primary">Create New Event</a>
+{% endblock %}
